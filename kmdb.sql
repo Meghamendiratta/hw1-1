@@ -126,3 +126,79 @@
 
 -- The SQL statement for the cast output
 -- TODO!
+
+DROP TABLE topcast;
+DROP TABLE movie;
+DROP TABLE studio;
+DROP TABLE character;
+
+
+CREATE TABLE movie (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+title TEXT,
+year INTEGER,
+rating TEXT,
+studio_id INTEGER
+);
+
+CREATE TABLE studio (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+studio_name TEXT);
+
+CREATE TABLE topcast (id INTEGER PRIMARY KEY AUTOINCREMENT, actor_name TEXT);
+
+CREATE TABLE character (
+character_name TEXT,
+movie_id INTEGER,
+topcast_id INTEGER
+);
+
+INSERT INTO studio (studio_name) VALUES ("Warner Bros.");
+
+INSERT INTO movie (title, year, rating, studio_id) 
+VALUES ("batman begins", "2005", "pg-13", "1"),
+("the dark night", "2008", "pg-13", "1"), ("the dark night rises", "2012", "pg-13", "1");
+
+INSERT INTO topcast (actor_name) VALUES ("Christian Bale"); 
+INSERT INTO topcast (actor_name) VALUES ("Michael Caine"); 
+INSERT INTO topcast (actor_name) VALUES ("Liam Neeson"); 
+INSERT INTO topcast (actor_name) VALUES ("KATIE HOLMES");
+INSERT INTO topcast (actor_name) VALUES ("Gary Oldman"); 
+INSERT INTO topcast (actor_name) VALUES ("Heath Ledger"); 
+INSERT INTO topcast (actor_name) Values ("Aoron Eckhart"); 
+INSERT INTO topcast (actor_name) VALUES ("Maggie Gyllenhaal");
+INSERT INTO topcast (actor_name) VALUES ("Tom Hardy"); 
+INSERT INTO topcast (actor_name) VALUES ("Joseph Gordon Levitt"); 
+INSERT INTO topcast (actor_name) VALUES ("Anne Hathway");
+
+
+INSERT INTO character (character_name, movie_id, topcast_id) VALUES ("Bruce Wayne", "1", "1");
+INSERT INTO character (character_name, movie_id, topcast_id) VALUES ("Alfred", "1", "2");
+INSERT INTO character (character_name, movie_id, topcast_id) VALUES ("Ra's Al Ghul", "1", "3");
+INSERT INTO character (character_name, movie_id, topcast_id) VALUES ("Rachel Dawes", "1", "4");
+INSERT INTO character (character_name, movie_id, topcast_id) VALUES ("Commissioner Gordon", "1", "5");
+INSERT INTO character (character_name, movie_id, topcast_id) VALUES ("Bruce Wayne", "2", "1");
+INSERT INTO character (character_name, movie_id, topcast_id) VALUES ("Joker", "2", "6");
+INSERT INTO character (character_name, movie_id, topcast_id) VALUES ("Harvey Dent", "2", "7");
+INSERT INTO character (character_name, movie_id, topcast_id) VALUES ("Alfred", "2", "2");
+INSERT INTO character (character_name, movie_id, topcast_id) VALUES ("Rachel Dawes", "2", "8");
+INSERT INTO character (character_name, movie_id, topcast_id) VALUES ("Bruce Wayne", "3", "1");
+INSERT INTO character (character_name, movie_id, topcast_id) VALUES ("Commissioner Gordon", "3", "5");
+INSERT INTO character (character_name, movie_id, topcast_id) VALUES ("Bane", "3", "9");
+INSERT INTO character (character_name, movie_id, topcast_id) VALUES ("John Blake", "3", "10");
+INSERT INTO character (character_name, movie_id, topcast_id) VALUES ("Selina Kyle", "3", "11");
+
+SELECT movie.title, character.character_name, topcast.actor_name 
+FROM character 
+LEFT JOIN movie ON movie.id=character.movie_id 
+LEFT JOIN topcast ON topcast.id=character.topcast_id;
+
+
+
+
+
+
+
+
+
+
